@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="multichoice">Soy el texto de la question1
+    <name><text>Definiciones 01</text></name>
+    <questiontext format="html">Soy el questiontext
+      <text><![CDATA[<p>En el lenguaje Haskell, ¿a qué se le llama una <i>definición</i>?<br></p>]]></text>
+    </questiontext>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>A una asociación de un nombre (identificador) con un valor de un tipo particular.<br></p>]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la asociación de un nombre (identificador) con su tipo.<br></p>]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la declaración de una función.<br></p>]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la firma de una función.<br></p>]]></text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>Definiciones 01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En el lenguaje Haskell, ¿a qué se le llama una <i>definición</i>?<br></p>]]></text>
+    </questiontext>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>A una asociación de un nombre (identificador) con un valor de un tipo particular.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la asociación de un nombre (identificador) con su tipo.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la declaración de una función.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la firma de una función.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

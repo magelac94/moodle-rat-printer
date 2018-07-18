@@ -5,8 +5,8 @@ from lxml import etree
 def abrir():
 	
 # Abre ventana para seleccionar archivo, devuelve la ruta del archivo 
-   archivo=fd.askopenfilename()
-   print("soy el archivo" + str(archivo))   # imprimo ruta del archivo
+	archivo=fd.askopenfilename()	
+	print("soy el archivo" + str(archivo))   # imprimo ruta del archivo
 
 # Abro archivo y guardo su contenido en una lista que contiene las lineas del archivo
    #contenido = open(archivo,'r')
@@ -23,29 +23,48 @@ def abrir():
 
 
 # Guardo contenido de archivo xml en un arbol de la lib lxml	
-   doc = etree.parse(archivo)
+	doc = etree.parse(archivo)
    #print etree.tostring(doc,pretty_print=True ,xml_declaration=True, encoding="utf-8")
 
-# Obtener elemento raiz
-   raiz=doc.getroot()
-   print (raiz.tag)
+ #Obtener elemento raiz
+	print ("RAIZ")
+	raiz=doc.getroot()
+	print (raiz.tag)
 
 # Elementos hijos de la raiz
-	#len (raiz)
+	print (" CANTIDAD DE HIJOS")
+	print (len(raiz))
 
+ #Primer elemento
+	quiz=raiz[0]
+	#print (quiz.tag)
+	#print (quiz[0].tag)
  
+	#print ("QUESTIONTEXT " )
+	#print (quiz.get("questiontext"))
+	# Devuelve UN precio
+	#precio = quiz.find("questiontext")
+
+	# Texto de la Pregunta
+	preguntas = doc.findall("question")
+	print (preguntas[0].find("questiontext/text").text)
+
+	# Texto 1era Respuesta
+	print (preguntas[0].find("answer/text"))
+
+# Devuelve text del primer elemento
+	#print (quiz.findtext("questiontext"))
+
+	# iterar ascendentemente para obtener padre o abuelo
+	#for padre in quiz.iterancestors():
+	#	print (padre.tag)
+
+	#o=etree.fromstring(archivo)
+	# get childrens
+	#for hijo in quiz.getchildren():
+	#	print (hijo.tag)
+
   
-
- 
-
-
-
-
-
- #  open(archivo,"r")
- #  archivo = open("r")
- #  lines = archivo.read()
- # print (str(lines))
 
 
 ventana=Tk()
