@@ -1,29 +1,39 @@
 import tkinter.filedialog as fd
 from tkinter import filedialog
 from tkinter import *
+from lxml import etree
 def abrir():
-  # ruta=fd.askdirectory()
-   archivo=fd.askopenfilename()
-   print("soy el archivo" + str(archivo))
-   contenido = open(archivo,'r')
-   lista = contenido.readlines()
+	
+# Abre ventana para seleccionar archivo, devuelve la ruta del archivo 
+	archivo=fd.askopenfilename()	
+	print("soy el archivo" + str(archivo))   # imprimo ruta del archivo
 
-   cont = 0
-   for linea in lista:
-   	cont +=1
-   	print(cont,linea)
+# Guardo contenido de archivo xml en un arbol de la lib lxml	
+	doc = etree.parse(archivo)
 
-   #print(linea)
+ #Obtener elemento raiz
+	print ("RAIZ")
+	raiz=doc.getroot()
+	print (raiz.tag)
 
-   contenido.close
+# Elementos hijos de la raiz
+	print (" CANTIDAD DE HIJOS")
+	print (len(raiz))
 
+ #Primer elemento
+	quiz=raiz[0]
 
+	# Texto de la Pregunta
+	preguntas = doc.findall("question")
+	print ("Pregunta ")
+	print (preguntas[0].find("questiontext/text").text)
 
- #  open(archivo,"r")
- #  archivo = open("r")
- #  lines = archivo.read()
-  # print (str(lines))
-
+	# tipo de pregunta
+	print ("Tipo de Pregunta")
+	
+	# Texto 1era Respuesta
+	print ("Respuesta 1")
+	print (preguntas[0].find("answer/text").text)
 
 ventana=Tk()
 ventana.title("TBL Printer")

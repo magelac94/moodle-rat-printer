@@ -47,10 +47,16 @@ def abrir():
 
 	# Texto de la Pregunta
 	preguntas = doc.findall("question")
+	print ("Pregunta ")
 	print (preguntas[0].find("questiontext/text").text)
 
+	# tipo de pregunta
+	print ("Tipo de Pregunta")
+	#print (preguntas[0].find(""))
+	#print (quiz.tag)
 	# Texto 1era Respuesta
-	print (preguntas[0].find("answer/text"))
+	print ("Respuesta 1")
+	print (preguntas[0].find("answer/text").text)
 
 # Devuelve text del primer elemento
 	#print (quiz.findtext("questiontext"))
