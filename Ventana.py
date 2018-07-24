@@ -2,6 +2,11 @@ import tkinter.filedialog as fd
 from tkinter import filedialog
 from tkinter import *
 from lxml import etree
+import html
+import re
+def strip_tags(value):
+	return re.sub(r'<[^>]*?>','',value)
+
 def abrir():
 	
 # Abre ventana para seleccionar archivo, devuelve la ruta del archivo 
@@ -26,14 +31,16 @@ def abrir():
 	# Texto de la Pregunta
 	preguntas = doc.findall("question")
 	print ("Pregunta ")
-	print (preguntas[0].find("questiontext/text").text)
+	print (strip_tags(preguntas[0].find("questiontext/text").text))
 
+	#print(html.unescape('&pound;682m'))
 	# tipo de pregunta
 	print ("Tipo de Pregunta")
 	
 	# Texto 1era Respuesta
 	print ("Respuesta 1")
-	print (preguntas[0].find("answer/text").text)
+
+	print (strip_tags(preguntas[0].find("answer/text").text))
 
 ventana=Tk()
 ventana.title("TBL Printer")
