@@ -7,45 +7,63 @@ import re
 def strip_tags(value):
 	return re.sub(r'<[^>]*?>','',value)
 
-def abrir():
-	
-# Abre ventana para seleccionar archivo, devuelve la ruta del archivo 
-	archivo=fd.askopenfilename()	
-	print("soy el archivo" + str(archivo))   # imprimo ruta del archivo
+def abrirXML():
+	 
+	gridQuiz = [[0,1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9]]	# Estructura donde se guardaran las preguntas
+	# gridQuiz[x][] # numero pregunta
+	# gridQuiz[][0]	# Titulo
+	# gridQuiz[][1]	# Pregunta
+	# gridQuiz[][2]	# Tipo de Pregunta
+	# gridQuiz[][3]	# Imagen
+	# gridQuiz[][4]	# Respuesta 1
+	# gridQuiz[][5]	# Respuesta 2
+	# gridQuiz[][6]	# Respuesta 3 ...
 
-# Guardo contenido de archivo xml en un arbol de la lib lxml	
-	doc = etree.parse(archivo)
 
- #Obtener elemento raiz
-	print ("RAIZ")
-	raiz=doc.getroot()
-	print (raiz.tag)
 
-# Elementos hijos de la raiz
-	print (" CANTIDAD DE HIJOS")
-	print (len(raiz))
+	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
 
- #Primer elemento
-	quiz=raiz[0]
+	doc = etree.parse(archivo)	# Se guarda contenido de archivo xml en un arbol de la lib lxml	
+
+	raiz=doc.getroot() 	#Obtener elemento raiz
+
+	print ("Cantidad de Preguntas del test ", len(raiz))	# Elementos hijos de la raiz = cantidad de preguntas
+
+	quiz=raiz[0]	#Primer elemento
+
+	# Titulo opcional
+	gridQuiz[0][0]= 2	# agregar titulo pregunta
 
 	# Texto de la Pregunta
 	preguntas = doc.findall("question")
-	print ("Pregunta ")
-	print (strip_tags(preguntas[0].find("questiontext/text").text))
+	p1 = strip_tags(preguntas[0].find("questiontext/text").text)
+	gridQuiz[0][1]= p1
+	print ("PREGUNTA EN LISTA")
+	print(gridQuiz[0][1])
 
-	#print(html.unescape('&pound;682m'))
-	# tipo de pregunta
+	# Tipo de pregunta	
 	print ("Tipo de Pregunta")
-	
+	gridQuiz[0][2] = "Soy el tipo de Pregunta"   # agregar tipo de pregunta
+
+
+	# Imagen
+	print ("Imagen")
+	gridQuiz[0][3] = "Soy el tipo de Pregunta"   # agrgar imagen si hay
+
+
 	# Texto 1era Respuesta
 	print ("Respuesta 1")
+	r1=strip_tags(preguntas[0].find("answer/text").text)
+	gridQuiz[0][4]=r1
+	print (gridQuiz[0][4])
 
-	print (strip_tags(preguntas[0].find("answer/text").text))
+
+	
 
 ventana=Tk()
 ventana.title("TBL Printer")
 ventana.config(bg="#0B0B61")
 ventana.geometry("300x400")
-botonAbrir=Button(ventana,text="Seleccionar archivo", command=abrir)
+botonAbrir=Button(ventana,text="Seleccionar archivo", command=abrirXML)
 botonAbrir.grid(padx=100,pady=100)
 ventana.mainloop()
