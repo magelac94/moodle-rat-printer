@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-  <question type="multichoice">Soy el texto de la question1
+  <question type="multichoice">
     <name><text>Definiciones 01</text></name>
-    <questiontext format="html">Soy el questiontext
+    <questiontext format="html">
       <text><![CDATA[<p>En el lenguaje Haskell, ¿a qué se le llama una <i>definición</i>?<br></p>]]></text>
     </questiontext>
     <answer fraction="100" format="html">
@@ -23,10 +23,10 @@
       <text>Definiciones 01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>En el lenguaje Haskell, ¿a qué se le llama una <i>definición</i>?<br></p>]]></text>
+      <text><![CDATA[<p>En el lenguaje Haskell,jfdjfklajdfkljakldfjklafjlkafdiofjpoipoioasfpoidfpooidfop>]]></text>
     </questiontext>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>A una asociación de un nombre (identificador) con un valor de un tipo particular.<br></p>]]></text>
+      <text><![CDATA[<p>RESPUESTA PREGUNTA 2ticular.<br></p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>

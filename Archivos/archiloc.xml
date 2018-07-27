@@ -1,0 +1,25 @@
+<lista>
+
+   <provincia id="01">
+
+      <nombre>Alava</nombre>
+
+   <localidades>
+
+     <localidad c="0">Aberasturi</localidad>
+     <localidad c="0">Abetxuko</localidad>
+     <localidad c="0">Abezia</localidad>
+     <localidad c="0">Abornikano</localidad>
+     <localidad c="0">Acebedo</localidad>
+
+   <provincia id="02">
+
+      <nombre>Barcelona</nombre>
+
+   <localidades>
+
+     <localidad c="0">ej1</localidad>
+     <localidad c="0">ej2</localidad>
+     <localidad c="0">ej3</localidad>
+     <localidad c="0">ej4</localidad>
+     <localidad c="0">ej5</localidad>
