@@ -5,6 +5,9 @@ from lxml import etree
 import html
 import re
 import xml.etree.ElementTree as ET
+import time
+
+
 def strip_tags(value):
 	return re.sub(r'<[^>]*?>','',value)
 
@@ -46,9 +49,16 @@ def manejoDatos(archivo):
 		print ("Tipo de Pregunta: ", gridQuiz[0][2])
 		print ("Respuesta1: ", gridQuiz[0][4])
 
+	return gridQuiz
+
+def imprimirPDF(lista):
+	return "null"
+
+
 def abrirXML():
  	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
- 	manejoDatos(archivo)
+ 	datos = manejoDatos(archivo)
+ 	imprimirPDF(datos)
 	
 
 	

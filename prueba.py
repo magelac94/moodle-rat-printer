@@ -1,83 +1,76 @@
 import tkinter.filedialog as fd
 from tkinter import filedialog
 from tkinter import *
-from lxml import etree
-def abrir():
-	
-# Abre ventana para seleccionar archivo, devuelve la ruta del archivo 
-	archivo=fd.askopenfilename()	
-	print("soy el archivo" + str(archivo))   # imprimo ruta del archivo
+import time
+from reportlab.lib.enums import TA_JUSTIFY
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
 
-# Abro archivo y guardo su contenido en una lista que contiene las lineas del archivo
-   #contenido = open(archivo,'r')
-   #lista = contenido.readlines()
-
- 	# Imprimo las lineas del archivo
-	#  cont = 0
-	 #  for linea in lista:
-	 #  	cont +=1
-	 #  	print(cont,linea)
-
-# Cierro archivo
-	#contenido.close
+from tkinter import *
+import time
 
 
-# Guardo contenido de archivo xml en un arbol de la lib lxml	
-	doc = etree.parse(archivo)
-   #print etree.tostring(doc,pretty_print=True ,xml_declaration=True, encoding="utf-8")
+def salirPDF():
+ 	archivo=fd.askdirectory()	
+ 	imprimirPDF(archivo)
 
- #Obtener elemento raiz
-	print ("RAIZ")
-	raiz=doc.getroot()
-	print (raiz.tag)
-
-# Elementos hijos de la raiz
-	print (" CANTIDAD DE HIJOS")
-	print (len(raiz))
-
- #Primer elemento
-	quiz=raiz[0]
-	#print (quiz.tag)
-	#print (quiz[0].tag)
- 
-	#print ("QUESTIONTEXT " )
-	#print (quiz.get("questiontext"))
-	# Devuelve UN precio
-	#precio = quiz.find("questiontext")
-
-	# Texto de la Pregunta
-	preguntas = doc.findall("question")
-	print ("Pregunta ")
-	print (preguntas[0].find("questiontext/text").text)
-
-	# tipo de pregunta
-	print ("Tipo de Pregunta")
-	#print (preguntas[0].find(""))
-	#print (quiz.tag)
-	# Texto 1era Respuesta
-	print ("Respuesta 1")
-	print (preguntas[0].find("answer/text").text)
-
-# Devuelve text del primer elemento
-	#print (quiz.findtext("questiontext"))
-
-	# iterar ascendentemente para obtener padre o abuelo
-	#for padre in quiz.iterancestors():
-	#	print (padre.tag)
-
-	#o=etree.fromstring(archivo)
-	# get childrens
-	#for hijo in quiz.getchildren():
-	#	print (hijo.tag)
-
-  
-	#print(html.unescape('&pound;682m'))   html formato
-
+def imprimirPDF(archivo):
+	doc = SimpleDocTemplate(archivo, pagesize=letter, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
+	Story = []
+	#logotipo = "/home/decodigo/Documentos/python/python_logo.png"
+	nombreRevista = "Programación Avanzada"
+	numero = 4
+	precio = "10.00"
+	fechaLimite = "27/09/2017"
+	obsequio = "Taller de Python"
+	formatoFecha = time.ctime()
+	nombreCompleto = "José Rodriguez"
+	partesDeDireccion = ["Calle con número 123", "Colonia, Código Postal 12345"]
+	#imagen = Image(logotipo, 1 * inch, 1 * inch)
+	#Story.append(imagen)
+	estilos = getSampleStyleSheet()
+	estilos.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
+	texto = '%s' % formatoFecha
+	Story.append(Paragraph(texto, estilos["Normal"]))
+	Story.append(Spacer(1, 12))
+	# Se construye la dirección
+	texto = '%s' % nombreCompleto
+	Story.append(Paragraph(texto, estilos["Normal"]))
+	for part in partesDeDireccion:
+  		texto = '%s' % part.strip()
+  		Story.append(Paragraph(texto, estilos["Normal"]))
+	Story.append(Spacer(1, 12))
+	texto = 'Estimado %s:' % nombreCompleto.split()[0].strip()
+	Story.append(Paragraph(texto, estilos["Normal"]))
+	Story.append(Spacer(1, 12))
+	texto = 'Nos gustaría darle la bienvenida como suscriptor a nuestra revista %s ! \
+        Recibirá %s números con un precio introductorio de $%s. Por favor responda antes de \
+        %s para comenzar a recibir su suscripción y obtenga además su obsequio: %s.' % (nombreRevista,
+                                                                                        numero,
+                                                                                        precio,
+                                                                                        fechaLimite,
+                                                                                        obsequio)
+	Story.append(Paragraph(texto, estilos["Justify"]))
+	Story.append(Spacer(1, 12))
+	texto = 'Gracias y esperamos haberle servido.'
+	Story.append(Paragraph(texto, estilos["Justify"]))
+	Story.append(Spacer(1, 12))
+	texto = 'Sinceramente,'
+	Story.append(Paragraph(texto, estilos["Normal"]))
+	Story.append(Spacer(1, 48))
+	texto = 'Daniel López'
+	Story.append(Paragraph(texto, estilos["Normal"]))
+	Story.append(Spacer(1, 12))
+	doc.build(Story)
 
 ventana=Tk()
 ventana.title("TBL Printer")
 ventana.config(bg="#0B0B61")
 ventana.geometry("300x400")
-botonAbrir=Button(ventana,text="Seleccionar archivo", command=abrir)
+botonAbrir=Button(ventana,text="Seleccionar archivo", command=salirPDF)
 botonAbrir.grid(padx=100,pady=100)
 ventana.mainloop()
+
+
