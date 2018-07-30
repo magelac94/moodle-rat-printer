@@ -7,13 +7,14 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
-
+from reportlab.pdfgen import canvas
 from tkinter import *
 import time
 
 
 def salirPDF():
- 	archivo=fd.askdirectory()	
+ #	archivo=fd.askdirectory()	
+ 	archivo="nombrearchivo.pdf"
  	imprimirPDF(archivo)
 
 def imprimirPDF(archivo):
