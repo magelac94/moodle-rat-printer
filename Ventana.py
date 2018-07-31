@@ -37,7 +37,8 @@ def manejoDatos(archivo):
 	print ("Cantidad de Preguntas del test ", cantidadPreguntas)
 
 	cantidadRespuestasMax = 20
-
+	
+	
 	for j in range(cantidadPreguntas):
 		gridQuiz.append([])
 		for h in range(cantidadRespuestasMax):
@@ -50,6 +51,7 @@ def manejoDatos(archivo):
 
 		if tipopregunta == "category":
 			cantidadPreguntas = cantidadPreguntas - 1
+			i = i - 1
 		else:
 			titulo = cuestion.find("name/text").text
 			pregunta = strip_tags(cuestion.find("questiontext/text").text)
@@ -57,30 +59,30 @@ def manejoDatos(archivo):
 			#imagen = resolvertipopregunta = cuestion.get('type')
 			respuesta1 = strip_tags(cuestion.find("answer/text").text)
 
-			print("TODAS LAS PREGUNTAS")
+			# Respuestas de la Pregunta
 			k = 5 
 			for elt in cuestion.getiterator("answer"):
 				respuesta = strip_tags(elt.find("text").text)
 				gridQuiz[i][k]=respuesta
-				print (gridQuiz[i][k])
+			#	print (gridQuiz[i][k])
 				k = k + 1
-
-
 			cantidadRespuestas = k-5
+
 			gridQuiz[i][0]= titulo
 			gridQuiz[i][1]= pregunta
 			gridQuiz[i][2] = tipopregunta
 		#	gridQuiz[i][3] = imagen
 			gridQuiz[i][4] = cantidadRespuestas
 
-
 			print ("Titulo Pregunta: ",gridQuiz[i][0])
 			print( "Texto Pregunta: ",gridQuiz[i][1])
 			print ("Tipo de Pregunta: ", gridQuiz[i][2])
 			print ("Cantidad de Respuestas",gridQuiz[i][4])
+			
 			for p in range (5,5+cantidadRespuestas):
 				print ("Respuesta :",gridQuiz[i][p])
 			i = i + 1
+			print("------------------------------------------------")
 
 	return gridQuiz
 

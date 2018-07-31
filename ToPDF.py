@@ -70,32 +70,28 @@ def convertir(listaPreguntas):
     numPreg = 1
 
     for pregunta in listaPreguntas:
+        if pregunta[4] != None:
 
-    #    gridQuiz[0][0]= titulo
-    #    gridQuiz[0][1]= pregunta
-    #    gridQuiz[0][2] = tipopregunta
-    #    gridQuiz[0][3] = imagen
-    #    gridQuiz[0][4] = cantidad de respuestas
-    #    gridQuiz[0][4] = cantidad de respuestas
+            # Numero Pregunta
+            lineaNumeroPregunta = '<font size=9>Pregunta %s</font>' % numPreg
+            Prueba.append(Paragraph(lineaNumeroPregunta, estiloNumPregunta["Normal"])) 
 
-        # Numero Pregunta
-        lineaNumeroPregunta = '<font size=9>Pregunta %s</font>' % numPreg
-        Prueba.append(Paragraph(lineaNumeroPregunta, estiloNumPregunta["Normal"])) 
+            #Titulo de la Pregunta - Opcional
+            lineaTituloPregunta = '<font size=12>%s</font>' % pregunta[0]
+            Prueba.append(Paragraph(lineaTituloPregunta, estiloTituloPregunta["Normal"])) 
 
-        #Titulo de la Pregunta - Opcional
-        lineaTituloPregunta = '<font size=12>%s</font>' % pregunta[0]
-        Prueba.append(Paragraph(lineaTituloPregunta, estiloTituloPregunta["Normal"])) 
+            #Texto de la Pregunta
+            lineaPregunta = '<font size=12>%s</font>' % pregunta[1]
+            Prueba.append(Paragraph(lineaPregunta, estiloPregunta["Normal"])) 
 
-        #Texto de la Pregunta
-        lineaPregunta = '<font size=12>%s</font>' % pregunta[1]
-        Prueba.append(Paragraph(lineaPregunta, estiloPregunta["Normal"])) 
+            # Respuestas
+            p = 5+pregunta[4]
 
-        # Respuestas
-        for i in range(5,5+pregunta[4]):
-            lineaRespuesta = '<font size=12>%s</font>' % pregunta[i]
-            Prueba.append(Paragraph(lineaRespuesta, estiloRespuesta["Normal"]))
-        Prueba.append(Spacer(1, 12))
+            for i in range(5,p):
+                lineaRespuesta = '<font size=12>%s</font>' % pregunta[i]
+                Prueba.append(Paragraph(lineaRespuesta, estiloRespuesta["Normal"]))
+            Prueba.append(Spacer(1, 12))
 
-        numPreg = numPreg + 1         
+            numPreg = numPreg + 1         
 
     documento.build(Prueba)
