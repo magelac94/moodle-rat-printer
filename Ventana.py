@@ -120,11 +120,11 @@ def manejoDatos(archivo):
 
 # Funcion que recibe una lista y con una funcion auxiliar se imprime el test
 def imprimirPDF(lista,destino):
-	convertir(lista)
+	convertir(lista,destino)
 
 # Funcion que recibe una lista y con una funcion auxiliar se imprime las respuestas correctas
 def respuestasPDF(lista,destino):
-	imprimirRespuestas(lista)
+	imprimirRespuestas(lista,destino)
 
 def abrirXML():
  	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
@@ -138,9 +138,9 @@ def abrirXML():
 
 	
 ventana=Tk()
-ventana.title("TBL Printer")
+ventana.title("TBL Printer by Magela Carballo")
 ventana.config(bg="#0B0B61")
-ventana.geometry("300x400")
-botonAbrir=Button(ventana,text="Seleccionar archivo", command=abrirXML)
+ventana.geometry("600x500")
+botonAbrir=Button(ventana,text="Select File", command=abrirXML)
 botonAbrir.grid(padx=100,pady=100)
 ventana.mainloop()

@@ -23,12 +23,12 @@ from reportlab.pdfgen import *
  
  # Funcion que recibe matriz con las preguntas y respuestas y
  # genera un archivo PDF con las preguntas formateadas
-def convertir(listaPreguntas):
+def convertir(listaPreguntas,destino):
     Prueba=[]                                               # Lista con lineas del archivo
     diaHora = time.ctime()                                  # Hora actual
     nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico" # Nombre de la prueba
     descripcion = ""                                        # Descripcion - Opcional
-    nombreArchivo = nombrePrueba +".pdf"                    # Nombre del archivo final
+    nombreArchivo = destino+"/"+nombrePrueba +".pdf"         # nombre archivo
 
     documento = SimpleDocTemplate(nombreArchivo,pagesize=letter,
                         rightMargin=72,leftMargin=72,
@@ -57,7 +57,7 @@ def convertir(listaPreguntas):
 
     # Descripcion de la Prueba (Opcional)
     estiloDescripcion=getSampleStyleSheet()
-    estiloDescripcion.add(ParagraphStyle(name='Center', alignment=TA_CENTER))
+    estiloDescripcion.add(ParagraphStyle(name='Center', alignment=TA_CENTER, fontName='Arial'))
     lineaDescripcion = '<font size=11>%s</font>' % descripcion
     Prueba.append(Paragraph(lineaDescripcion, estiloDescripcion["Normal"]))  
     Prueba.append(Spacer(1, 12))
@@ -96,13 +96,25 @@ def convertir(listaPreguntas):
             Prueba.append(Spacer(1, 12))
 
             # Respuestas
-            p = 5+pregunta[4]
+            tipopregunta = pregunta[2]
+            if tipopregunta == "enssay":
+                Prueba.append(Spacer(1, 100))
+                line = '<font size=11>__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  </font>'
+                Prueba.append(Paragraph(line, estiloRespuesta["Normal"]))
+                Prueba.append(Spacer(1, 12))
+            elif tipopregunta == "matching":
+                line = '<font size=11>--Error al mostrar tipo de pregunta matching>--Consulte al docente</font>'
+                Prueba.append(Paragraph(line, estiloRespuesta["Normal"]))
+                Prueba.append(Spacer(1, 12))
 
-            for i in range(5,p):
-                lineaRespuesta = '<font size=11>O %s</font>' % pregunta[i]
-                Prueba.append(Paragraph(lineaRespuesta, estiloRespuesta["Normal"]))
-                Prueba.append(Spacer(1, 6))
-            Prueba.append(Spacer(1, 12))
+            else:
+                p = 5+pregunta[4]
+
+                for i in range(5,p):
+                    lineaRespuesta = '<font size=11>O %s</font>' % pregunta[i]
+                    Prueba.append(Paragraph(lineaRespuesta, estiloRespuesta["Normal"]))
+                    Prueba.append(Spacer(1, 6))
+                Prueba.append(Spacer(1, 12))
 
             numPreg = numPreg + 1         
 
@@ -110,18 +122,17 @@ def convertir(listaPreguntas):
 
 # Funcion que recibe lista de tuplas con el numero de pregunta y
 # La respueta correcta de esa pregunta
-def imprimirRespuestas(listaRespuestas):
+def imprimirRespuestas(listaRespuestas, destino):
     Prueba=[]                                                        # Lista lineas archivo
     diaHora = time.ctime()                                           # Hora actual
 
     nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico -  RESPUESTAS"   # nombre prueba
-    nombreArchivo = nombrePrueba +".pdf"                                    # nombre archivo
+    nombreArchivo = destino+"/"+nombrePrueba +".pdf"                                    # nombre archivo
 
     documento = SimpleDocTemplate(nombreArchivo,pagesize=letter,
                         rightMargin=72,leftMargin=72,
                         topMargin=50,bottomMargin=18)
-    
-    
+
     # DIA Y HORA
     estiloFecha=getSampleStyleSheet()
     estiloFecha.add(ParagraphStyle(name='Right', alignment=TA_RIGHT))

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+        <text>$course$/Chequeo de preparación/Lenguaje funcional básico/2015. Lenguaje funcional básico</text>
+
+    </category>
+  </question>
+
 <!-- question: 17561  -->
   <question type="multichoice">
     <name>
@@ -52,8 +60,9 @@
       </feedback>
     </answer>
   </question>
+
 <!-- question: 17560  -->
-  <question type="multichoice">
+  <question type="enssay">
     <name>
       <text>Expresiones 01</text>
     </name>
@@ -104,6 +113,7 @@
       </feedback>
     </answer>
   </question>
+
 <!-- question: 17564  -->
   <question type="multichoice">
     <name>
@@ -156,6 +166,7 @@
       </feedback>
     </answer>
   </question>
+
 <!-- question: 17565  -->
   <question type="multichoice">
     <name>
@@ -208,8 +219,9 @@
       </feedback>
     </answer>
   </question>
+
 <!-- question: 17570  -->
-  <question type="multichoice">
+  <question type="truefalse">
     <name>
       <text>Expresiones 04</text>
     </name>
@@ -580,7 +592,7 @@
   </question>
 
 <!-- question: 17559  -->
-  <question type="multichoice">
+  <question type="enssay">
     <name>
       <text>Tipos de dato 01</text>
     </name>
@@ -633,7 +645,7 @@
   </question>
 
 <!-- question: 17566  -->
-  <question type="multichoice">
+  <question type="matching">
     <name>
       <text>Tipos de dato 02</text>
     </name>
