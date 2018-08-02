@@ -119,18 +119,20 @@ def manejoDatos(archivo):
 	return [gridQuiz, gridAnswers]
 
 # Funcion que recibe una lista y con una funcion auxiliar se imprime el test
-def imprimirPDF(lista):
+def imprimirPDF(lista,destino):
 	convertir(lista)
 
 # Funcion que recibe una lista y con una funcion auxiliar se imprime las respuestas correctas
-def respuestasPDF(lista):
+def respuestasPDF(lista,destino):
 	imprimirRespuestas(lista)
 
 def abrirXML():
  	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
  	datos = manejoDatos(archivo)	# recibe la matriz de datos generada desde el archivo xml
- 	imprimirPDF(datos[0])			# imprime los datos en un pdf
- 	respuestasPDF(datos[1])			# imprime los datos en un pdf
+ 	destino = filedialog.askdirectory()	# Caperta donde se guardara los pdf generados
+ 	print (" DESTINO ", destino)
+ 	imprimirPDF(datos[0],destino)			# imprime los datos en un pdf
+ 	respuestasPDF(datos[1],destino)			# imprime los datos en un pdf
 
 	
 
