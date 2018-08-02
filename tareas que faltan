@@ -3,7 +3,7 @@ tareas que faltan
 - entreverar las preguntas ? NO
 - sacar una hoja con respuestas correctas  LISTO (FALTARIA PONELE NUMERO DE RESPUESTA)
 - comentarios LISTO
-- elegir carpeta destino
+- elegir carpeta destino- ESTOY EN ESTO
 - controlar excepciones
 
 - encontrar letra negrita\
@@ -15,3 +15,11 @@ tareas que faltan
 
 - evaluar el tipo de pregunta y dependiendo eso ver como imprimir. ahora solo esta el multiple opcion
 - imagenes
+
+
+
+
+- EXCEPCIONES
+/ archivo invalido extension
+/ parametros invalidos
+/ error de archivo
