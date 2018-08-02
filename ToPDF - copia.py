@@ -24,8 +24,6 @@ from reportlab.pdfgen import *
  # Funcion que recibe matriz con las preguntas y respuestas y
  # genera un archivo PDF con las preguntas formateadas
 def convertir(listaPreguntas):
-    Prueba=[]                                               # Lista con lineas del archivo
-    diaHora = time.ctime()                                  # Hora actual
     nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico" # Nombre de la prueba
     descripcion = ""                                        # Descripcion - Opcional
     nombreArchivo = nombrePrueba +".pdf"                    # Nombre del archivo final
@@ -33,6 +31,21 @@ def convertir(listaPreguntas):
     documento = SimpleDocTemplate(nombreArchivo,pagesize=letter,
                         rightMargin=72,leftMargin=72,
                         topMargin=50,bottomMargin=18)
+    Prueba=[]
+    
+    #logo = "python_logo.png"
+    #magName = "Pythonista"
+    #issueNum = 12
+    #subPrice = "99.00"
+    #limitedDate = "03/05/2010"
+    #freeGift = "tin foil hat"
+ 
+    diaHora = time.ctime()
+    #full_name = "Magela Carballo"
+    #address_parts = ["411 State St.", "Marshalltown, IA 50158"]
+ 
+    #im = Image(logo, 2*inch, 2*inch)
+    #Prueba.append(im)
  
     # DIA Y HORA
     estiloFecha=getSampleStyleSheet()
@@ -106,16 +119,15 @@ def convertir(listaPreguntas):
 
             numPreg = numPreg + 1         
 
-    documento.build(Prueba)     # Generacion del documento
+    documento.build(Prueba)
 
-# Funcion que recibe lista de tuplas con el numero de pregunta y
-# La respueta correcta de esa pregunta
+
 def imprimirRespuestas(listaRespuestas):
-    Prueba=[]                                                        # Lista lineas archivo
-    diaHora = time.ctime()                                           # Hora actual
+    Prueba=[] 
+    diaHora = time.ctime()
 
-    nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico -  RESPUESTAS"   # nombre prueba
-    nombreArchivo = nombrePrueba +".pdf"                                    # nombre archivo
+    nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico -  RESPUESTAS"
+    nombreArchivo = nombrePrueba +".pdf"
 
     documento = SimpleDocTemplate(nombreArchivo,pagesize=letter,
                         rightMargin=72,leftMargin=72,
@@ -141,8 +153,9 @@ def imprimirRespuestas(listaRespuestas):
     estiloLinea.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY, fontName="Arial"))
 
     for pregunta in listaRespuestas:
+        # Numero Pregunta
         lineaRespuesta = '<font size=10>Pregunta %s - R: %s</font>' % (pregunta[0]+1 , pregunta[1])
         Prueba.append(Paragraph(lineaRespuesta, estiloLinea["Normal"])) 
         Prueba.append(Spacer(1, 10))   
 
-    documento.build(Prueba)         # Generacion de Archivo
+    documento.build(Prueba)
