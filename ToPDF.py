@@ -115,3 +115,42 @@ def convertir(listaPreguntas):
             numPreg = numPreg + 1         
 
     documento.build(Prueba)
+
+
+def imprimirRespuestas(listaRespuestas):
+    Prueba=[] 
+    diaHora = time.ctime()
+
+    nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico -  RESPUESTAS"
+    nombreArchivo = nombrePrueba +".pdf"
+
+    documento = SimpleDocTemplate(nombreArchivo,pagesize=letter,
+                        rightMargin=72,leftMargin=72,
+                        topMargin=50,bottomMargin=18)
+    
+    
+    # DIA Y HORA
+    estiloFecha=getSampleStyleSheet()
+    estiloFecha.add(ParagraphStyle(name='Right', alignment=TA_RIGHT))
+    lineaFecha = '<font size=9>%s</font>' % diaHora
+    Prueba.append(Paragraph(lineaFecha, estiloFecha["Normal"]))
+    Prueba.append(Spacer(1, 12))
+
+    # NOMBRE DE LA PRUEBA
+    estiloTitulo=getSampleStyleSheet()
+    estiloTitulo.add(ParagraphStyle(name='Center', alignment=TA_CENTER))
+    lineaTitulo = '<font size=13>%s</font>' % nombrePrueba
+    Prueba.append(Paragraph(lineaTitulo, estiloTitulo["Normal"]))  
+    Prueba.append(Spacer(1, 12))
+
+    # Preguntas y Respuestas
+    estiloLinea=getSampleStyleSheet()
+    estiloLinea.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY, fontName="Arial"))
+
+    for pregunta in listaRespuestas:
+        # Numero Pregunta
+        lineaRespuesta = '<font size=10>Pregunta %s - R: %s</font>' % (pregunta[0]+1 , pregunta[1])
+        Prueba.append(Paragraph(lineaRespuesta, estiloLinea["Normal"])) 
+        Prueba.append(Spacer(1, 10))   
+
+    documento.build(Prueba)

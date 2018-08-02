@@ -6,7 +6,8 @@ import html
 import re
 import xml.etree.ElementTree as ET
 import random
-from ToPDF import convertir
+from ToPDF import *
+
 #import ToPDF.py
 
 
@@ -17,6 +18,7 @@ def strip_tags(value):
 def manejoDatos(archivo):
 	
 	gridQuiz = []
+	gridAnswers = []
 	# Estructura donde se guardaran las preguntas
 	# gridQuiz[x][] # numero pregunta
 	# gridQuiz[][0]	# Titulo
@@ -44,6 +46,9 @@ def manejoDatos(archivo):
 		for h in range(cantidadRespuestasMax):
 			gridQuiz[j].append(None)
 
+	#for j in range(cantidadPreguntas):
+#		gridAnswers.append(())
+
 	i = 0
 	for cuestion in root.findall('question'):
 
@@ -51,7 +56,7 @@ def manejoDatos(archivo):
 
 		if tipopregunta == "category":
 			cantidadPreguntas = cantidadPreguntas - 1
-			i = i - 1
+			#i = i - 1
 		else:
 			titulo = cuestion.find("name/text").text
 			pregunta = strip_tags(cuestion.find("questiontext/text").text)
@@ -65,6 +70,7 @@ def manejoDatos(archivo):
 			for elt in cuestion.getiterator("answer"):
 				respuesta = strip_tags(elt.find("text").text)
 				listaAuxiliarDeRespuestas.append(respuesta)
+				respuestaCorrecta = listaAuxiliarDeRespuestas[0] # guardo la respuesta correcta ( la primera en este caso)
 				random.shuffle(listaAuxiliarDeRespuestas)		#entrevera las respuestas
 	#			gridQuiz[i][k]=respuesta
 			#	print (gridQuiz[i][k])
@@ -77,9 +83,13 @@ def manejoDatos(archivo):
 		#	gridQuiz[i][3] = imagen
 			gridQuiz[i][4] = cantidadRespuestas
 
+#			gridAnswers = gridQuiz
+			gridAnswers.append((i,respuestaCorrecta))
+
 			cont = 5
 			for x in listaAuxiliarDeRespuestas:
 				gridQuiz[i][cont]=x
+		#		gridAnswers[i][cont]=x
 				cont = cont + 1
 			
 			print ("Titulo Pregunta: ",gridQuiz[i][0])
@@ -92,16 +102,19 @@ def manejoDatos(archivo):
 			i = i + 1
 			print("------------------------------------------------")
 
-	return gridQuiz
+	return [gridQuiz, gridAnswers]
 
 def imprimirPDF(lista):
 	convertir(lista)
 
+def respuestasPDF(lista):
+	imprimirRespuestas(lista)
 
 def abrirXML():
  	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
  	datos = manejoDatos(archivo)
- 	imprimirPDF(datos)
+ 	imprimirPDF(datos[0])
+ 	respuestasPDF(datos[1])
 
 	
 
