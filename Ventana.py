@@ -5,7 +5,7 @@ from lxml import etree
 import html
 import re
 import xml.etree.ElementTree as ET
-#import time
+import random
 from ToPDF import convertir
 #import ToPDF.py
 
@@ -36,7 +36,7 @@ def manejoDatos(archivo):
 	cantidadPreguntas = len(root)
 	print ("Cantidad de Preguntas del test ", cantidadPreguntas)
 
-	cantidadRespuestasMax = 20
+	cantidadRespuestasMax = 100
 	
 	
 	for j in range(cantidadPreguntas):
@@ -57,16 +57,19 @@ def manejoDatos(archivo):
 			pregunta = strip_tags(cuestion.find("questiontext/text").text)
 			tipopregunta = cuestion.get('type')
 			#imagen = resolvertipopregunta = cuestion.get('type')
-			respuesta1 = strip_tags(cuestion.find("answer/text").text)
+			#respuesta1 = strip_tags(cuestion.find("answer/text").text)
 
 			# Respuestas de la Pregunta
-			k = 5 
+	#		k = 5
+			listaAuxiliarDeRespuestas = [] 
 			for elt in cuestion.getiterator("answer"):
 				respuesta = strip_tags(elt.find("text").text)
-				gridQuiz[i][k]=respuesta
+				listaAuxiliarDeRespuestas.append(respuesta)
+				random.shuffle(listaAuxiliarDeRespuestas)		#entrevera las respuestas
+	#			gridQuiz[i][k]=respuesta
 			#	print (gridQuiz[i][k])
-				k = k + 1
-			cantidadRespuestas = k-5
+		#		k = k + 1
+			cantidadRespuestas = len(listaAuxiliarDeRespuestas)
 
 			gridQuiz[i][0]= titulo
 			gridQuiz[i][1]= pregunta
@@ -74,6 +77,11 @@ def manejoDatos(archivo):
 		#	gridQuiz[i][3] = imagen
 			gridQuiz[i][4] = cantidadRespuestas
 
+			cont = 5
+			for x in listaAuxiliarDeRespuestas:
+				gridQuiz[i][cont]=x
+				cont = cont + 1
+			
 			print ("Titulo Pregunta: ",gridQuiz[i][0])
 			print( "Texto Pregunta: ",gridQuiz[i][1])
 			print ("Tipo de Pregunta: ", gridQuiz[i][2])
