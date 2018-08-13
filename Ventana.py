@@ -17,6 +17,7 @@ import re
 import xml.etree.ElementTree as ET
 import random
 from ToPDF import *
+import os
 
 # Funcion que elimina etiquetas HTML
 def strip_tags(value):
@@ -24,7 +25,7 @@ def strip_tags(value):
 
 # Funcion que obtiene un archivo XML realiza un arbol xml. 
 # Con el arbol se genera una matriz de preguntas, respuestas y algunos datos necesarios.
-def manejoDatos(archivo):
+def manejoDatos(archivo,cantidadRespuestasMax):
 	
 	gridQuiz = []
 	gridAnswers = []
@@ -53,7 +54,7 @@ def manejoDatos(archivo):
 	print ("Cantidad de Preguntas del test ", cantidadPreguntas)
 
 	# Cantidad de Respuestas maximas por pregunta
-	cantidadRespuestasMax = 100
+#	cantidadRespuestasMax = 100
 	
 	# Generacion de Matriz
 	for j in range(cantidadPreguntas):
@@ -78,7 +79,9 @@ def manejoDatos(archivo):
 			titulo = cuestion.find("name/text").text
 
 			# Se obtiene la pregunta
-			pregunta = strip_tags(cuestion.find("questiontext/text").text)
+
+			#pregunta = strip_tags(cuestion.find("questiontext/text").text)
+			pregunta = cuestion.find("questiontext/text").text
 
 			# En caso de tener imagen se guarda la misma
 			#imagen = resolvertipopregunta = cuestion.get('type')
@@ -86,7 +89,8 @@ def manejoDatos(archivo):
 			# Respuestas de la Pregunta
 			listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
 			for t in cuestion.getiterator("answer"):
-				respuesta = strip_tags(t.find("text").text)
+				#respuesta = strip_tags(t.find("text").text)
+				respuesta = t.find("text").text
 				listaAuxiliarDeRespuestas.append(respuesta)
 				respuestaCorrecta = listaAuxiliarDeRespuestas[0] # guardo la respuesta correcta ( la primera en este caso)
 				random.shuffle(listaAuxiliarDeRespuestas)		#entrevera las respuestas
@@ -118,29 +122,69 @@ def manejoDatos(archivo):
 
 	return [gridQuiz, gridAnswers]
 
-# Funcion que recibe una lista y con una funcion auxiliar se imprime el test
-def imprimirPDF(lista,destino):
-	convertir(lista,destino)
+#def abrirXML(archivo):
+# 	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
+# 	datos = manejoDatos(archivo)	# recibe la matriz de datos generada desde el archivo xml
+# 	destino = filedialog.askdirectory()	# Caperta donde se guardara los pdf generados
+# 	print (" DESTINO ", destino)
+# 	convertir(datos[0],destino,nombrePrueba,descripcion,tipoLetra )			# imprime los datos en un pdf
+# 	imprimirRespuestas(datos[1],destino)			# imprime los datos en un pdf
 
-# Funcion que recibe una lista y con una funcion auxiliar se imprime las respuestas correctas
-def respuestasPDF(lista,destino):
-	imprimirRespuestas(lista,destino)
+def configuracionDeParametros():
+	print ("Parameter Configuration")
 
-def abrirXML():
- 	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
- 	datos = manejoDatos(archivo)	# recibe la matriz de datos generada desde el archivo xml
- 	destino = filedialog.askdirectory()	# Caperta donde se guardara los pdf generados
- 	print (" DESTINO ", destino)
- 	imprimirPDF(datos[0],destino)			# imprime los datos en un pdf
- 	respuestasPDF(datos[1],destino)			# imprime los datos en un pdf
 
-	
+#Parametros
+directorioOrigen = ''
+directorioDestino = ''
+nombrePrueba = ''
+descripcion = ''
+cantidadDeRespuestas = 10
+tipoLetra = ''
+imprimirNumeroPregunta = false
+imprimirTituloPregunta = false
 
-	
-ventana=Tk()
-ventana.title("TBL Printer by Magela Carballo")
-ventana.config(bg="#0B0B61")
-ventana.geometry("600x500")
-botonAbrir=Button(ventana,text="Select File", command=abrirXML)
-botonAbrir.grid(padx=100,pady=100)
-ventana.mainloop()
+while (directorioOrigen == ''):
+	directorioOrigen = input("Select source directory or press P for more options(C for cancel): ")
+	if (directorioOrigen == ''):
+		print("You must enter the source directory")
+	elif(directorioOrigen == 'P'):
+		parametros = configuracionDeParametros();
+		directorioOrigen = ''
+	elif (directorioOrigen == 'C'):
+		print ("Bye!")
+	elif (os.path.basename(directorioOrigen).split('.')[-1])
+	else:
+		directorioDestino = ''
+		nombrePrueba = os.path.basename(directorioOrigen).split('.')[0]
+		while (directorioDestino == ''):
+			directorioDestino = input("Select destination directory (C for cancel) ")
+			if (directorioDestino == ''):
+				print("You must enter the destination directory")
+			elif(directorioDestino == 'C'):
+				print ("Bye!")
+				directorioOrigen = ''
+			else:
+				try:
+					datos = manejoDatos(directorioOrigen,cantidadDeRespuestas)
+					try:
+						convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,imprimirNumeroPregunta,imprimirTituloPregunta)
+						imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
+						print("PDF file created successfully in : ", directorioDestino)
+						directorioOrigen = ''
+					except:
+						print ("Error in selected directory")
+						directorioOrigen = ''
+				except:
+					print ("Error opening the source file")
+					directorioDestino = ''
+
+
+
+#ventana=Tk()
+#ventana.title("TBL Printer by Magela Carballo")
+#ventana.config(bg="#0B0B61")
+#ventana.geometry("600x500")
+#botonAbrir=Button(ventana,text="Select File", command=abrirXML)
+#botonAbrir.grid(padx=100,pady=100)
+#ventana.mainloop()

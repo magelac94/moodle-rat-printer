@@ -4,7 +4,7 @@ tareas que faltan
 - sacar una hoja con respuestas correctas  LISTO (FALTARIA PONELE NUMERO DE RESPUESTA)
 - comentarios LISTO
 - elegir carpeta destino- LISTO
-- controlar excepciones
+- controlar excepciones - LISTO
 
 - encontrar letra negrita\ -  NO FUNCIONA
 - cambiar tipo de letra   - NO FUNCIONA
@@ -44,6 +44,18 @@ Respuesta corta (shortanswer): asnwer-text
 Respuesta Numerica (numerical): asnwer-text
 Emparejamiento (matching): subquestion-text-answer
 Ensayo (essay): answer-text
+
+
+CONVERTIR HTML EN PDF 
+https://pyfpdf.readthedocs.io/en/latest/
+
+
+
+- formato html
+- imagen (data uri)
+- pasar a casillas los circulos de las preguntas
+- sacar titulo y numero pregunta
+- colocar una linea para separar las preguntas
 
 
 
