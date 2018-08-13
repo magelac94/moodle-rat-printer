@@ -145,7 +145,7 @@ imprimirNumeroPregunta = false
 imprimirTituloPregunta = false
 
 while (directorioOrigen == ''):
-	directorioOrigen = input("Select source directory or press P for more options(C for cancel): ")
+	directorioOrigen = input("Select xml file or press P for more options(C for cancel): ")
 	if (directorioOrigen == ''):
 		print("You must enter the source directory")
 	elif(directorioOrigen == 'P'):
@@ -153,7 +153,10 @@ while (directorioOrigen == ''):
 		directorioOrigen = ''
 	elif (directorioOrigen == 'C'):
 		print ("Bye!")
-	elif (os.path.basename(directorioOrigen).split('.')[-1])
+	elif (os.path.basename(directorioOrigen).split('.')[-1] != 'xml'):
+		print ("You must enter in a .xml file")
+	elif (directorioOrigen == 'W'):
+		abrirXML()   # abrir ventana grafica
 	else:
 		directorioDestino = ''
 		nombrePrueba = os.path.basename(directorioOrigen).split('.')[0]
