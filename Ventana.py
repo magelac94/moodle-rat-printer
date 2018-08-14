@@ -131,7 +131,74 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 # 	imprimirRespuestas(datos[1],destino)			# imprime los datos en un pdf
 
 def configuracionDeParametros():
+	parametros = []
 	print ("Parameter Configuration")
+	print ("1 - Escribir un Titulo Personalizado")
+	print ("2 - Escribir una Descripcion Personalizada ")
+	print ("3 - Configurar Cantidad de Respuestas Maximas")
+	print ("4 - Configurar Tipo de Letra")
+	print ("5 - Imprimir Titulo Prueba")
+	print ("6 - Imprimir Numero de Pregunta")
+	print ("7 - Imprimir Titulo de Pregunta")
+	print ("8 - Imprimir Descripcion")
+	print ("9 - Ver OPCIONES configuradas")
+	print ("0 - Salir")
+	opcion = input("Ingrese una opcion para configurar (Q para volver atras)")
+	
+	if (opcion == '1'):
+		nombrePrueba = input(" Ingrese Titulo para la Prueba: ")
+	elif (opcion == '2'):
+		descripcion = input("Ingrese Descripcion Opcional de la Prueba: ")
+	elif (opcion == '3'):
+		cantidadRespuestasMax = input("Ingrese cantidad de respuestas maxima [0-100]: ")
+	elif (opcion == '4'):
+		tipoLetra = input("Tipo Letra: A (Arial) / Time Roman (T): ")
+	elif (opcion == '5'):
+		if (imprimirTituloPrueba == true):
+			imprimirTituloPrueba = false
+		else:
+			imprimirTituloPrueba = true
+		print ("Se cambio el valor de impresion")
+	elif (opcion == '6'):
+		if (imprimirNumeroPregunta == false):
+			imprimirNumeroPregunta = true
+		else:
+			imprimirNumeroPregunta = false
+		print ("Se cambio el valor de impresion")
+	elif (opcion == '7'):
+		if (imprimirTituloPregunta ==  false):
+			imprimirTituloPregunta = true
+		else:
+			imprimirTituloPregunta = false
+		print ("Se cambio el valor de impresion")
+	elif (opcion == '8'):
+		if (imprimirDescripcion ==  false):
+			imprimirDescripcion = true
+		else:
+			imprimirDescripcion = false
+		print ("Se cambio el valor de impresion")
+	elif (opcion == '9'):
+		print("Nombre de Prueba: ", nombrePrueba)
+		print("Descripcion de la Prueba: ", descripcion)
+		print("Cantidad de Preguntas Maximas por Pregunta: ",cantidadRespuestasMax)
+		print("Tipo de Letra: ", tipoLetra)
+		print("Imprimir Titulo de Prueba:", imprimirTituloPrueba)
+		print("Imprimir Numero de Pregunta: ", imprimirNumeroPregunta)
+		print("Imprimir Titulo de la Pregunta: ",imprimirTituloPregunta)
+		print("Imprimir Descripcion de Prueba: ",imprimirDescripcion)
+		print("")
+	elif(opcion == '0'):
+		parametros.append(nombrePrueba)
+		parametros.append(descripcion)
+		parametros.append(cantidadRespuestasMax)
+		parametros.append(tipoLetra)
+		parametros.append(imprimirTituloPrueba)
+		parametros.append(imprimirNumeroPregunta)
+		parametros.append(imprimirTituloPregunta)
+		parametros.append(imprimirDescripcion)
+		return parametros
+	else:
+		print("Opcion incorrecta, seleccione nuevamente")
 
 
 #Parametros
@@ -141,8 +208,8 @@ nombrePrueba = ''
 descripcion = ''
 cantidadDeRespuestas = 10
 tipoLetra = ''
-imprimirNumeroPregunta = false
-imprimirTituloPregunta = false
+imprimirNumeroPregunta = False
+imprimirTituloPregunta = False
 
 while (directorioOrigen == ''):
 	directorioOrigen = input("Select xml file or press P for more options(C for cancel): ")
@@ -150,6 +217,14 @@ while (directorioOrigen == ''):
 		print("You must enter the source directory")
 	elif(directorioOrigen == 'P'):
 		parametros = configuracionDeParametros();
+		nombrePrueba = parametros[0]
+		descripcion = parametros[1]
+		cantidadRespuestasMax = parametros[2]
+		tipoLetra = parametros[3]
+		itituloPrueba = parametros[4]
+		inumeroPregunta = parametros[5]
+		itituloPregunta = parametros[6]
+		idescripcion = parametros[7]
 		directorioOrigen = ''
 	elif (directorioOrigen == 'C'):
 		print ("Bye!")

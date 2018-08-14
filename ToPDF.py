@@ -23,11 +23,12 @@ from reportlab.pdfgen import *
  
  # Funcion que recibe matriz con las preguntas y respuestas y
  # genera un archivo PDF con las preguntas formateadas
-def convertir(listaPreguntas,destino):
+def convertir(listaPreguntas,destino,nombrePrueba,descripcion,tipoLetra):
+
     Prueba=[]                                               # Lista con lineas del archivo
     diaHora = time.ctime()                                  # Hora actual
-    nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico" # Nombre de la prueba
-    descripcion = ""                                        # Descripcion - Opcional
+#    nombrePrueba = "PROGFUN-RAT1 Lenguaje funcional básico" # Nombre de la prueba
+#    descripcion = ""                                        # Descripcion - Opcional
     nombreArchivo = destino+"/"+nombrePrueba +".pdf"         # nombre archivo
 
     documento = SimpleDocTemplate(nombreArchivo,pagesize=letter,
