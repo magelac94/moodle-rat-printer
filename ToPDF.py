@@ -23,7 +23,8 @@ from reportlab.pdfgen import *
  
  # Funcion que recibe matriz con las preguntas y respuestas y
  # genera un archivo PDF con las preguntas formateadas
-def convertir(listaPreguntas,destino,nombrePrueba,descripcion,tipoLetra):
+
+def convertir(listaPreguntas,destino,nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion):
 
     Prueba=[]                                               # Lista con lineas del archivo
     diaHora = time.ctime()                                  # Hora actual
@@ -50,18 +51,20 @@ def convertir(listaPreguntas,destino,nombrePrueba,descripcion,tipoLetra):
     Prueba.append(Spacer(1, 12))
  
     # NOMBRE DE LA PRUEBA
-    estiloTitulo=getSampleStyleSheet()
-    estiloTitulo.add(ParagraphStyle(name='Center', alignment=TA_CENTER))
-    lineaTitulo = '<font size=13>%s</font>' % nombrePrueba
-    Prueba.append(Paragraph(lineaTitulo, estiloTitulo["Normal"]))  
-    Prueba.append(Spacer(1, 12))
+    if (nombrePrueba == True):
+        estiloTitulo=getSampleStyleSheet()
+        estiloTitulo.add(ParagraphStyle(name='Center', alignment=TA_CENTER))
+        lineaTitulo = '<font size=13>%s</font>' % nombrePrueba
+        Prueba.append(Paragraph(lineaTitulo, estiloTitulo["Normal"]))  
+        Prueba.append(Spacer(1, 12))
 
     # Descripcion de la Prueba (Opcional)
-    estiloDescripcion=getSampleStyleSheet()
-    estiloDescripcion.add(ParagraphStyle(name='Center', alignment=TA_CENTER, fontName='Arial'))
-    lineaDescripcion = '<font size=11>%s</font>' % descripcion
-    Prueba.append(Paragraph(lineaDescripcion, estiloDescripcion["Normal"]))  
-    Prueba.append(Spacer(1, 12))
+    if (idescripcion == True):
+        estiloDescripcion=getSampleStyleSheet()
+        estiloDescripcion.add(ParagraphStyle(name='Center', alignment=TA_CENTER, fontName='Arial'))
+        lineaDescripcion = '<font size=11>%s</font>' % descripcion
+        Prueba.append(Paragraph(lineaDescripcion, estiloDescripcion["Normal"]))  
+        Prueba.append(Spacer(1, 12))
 
 
     # Preguntas y Respuestas
@@ -82,14 +85,16 @@ def convertir(listaPreguntas,destino,nombrePrueba,descripcion,tipoLetra):
     for pregunta in listaPreguntas:
         if pregunta[4] != None:
 
-            # Numero Pregunta
-            lineaNumeroPregunta = '<font size=9>Pregunta %s</font>' % numPreg
-            Prueba.append(Paragraph(lineaNumeroPregunta, estiloNumPregunta["Normal"])) 
+            # Numero Pregunta - Opcional
+            if (inumeroPregunta == True):
+                lineaNumeroPregunta = '<font size=9>Pregunta %s</font>' % numPreg
+                Prueba.append(Paragraph(lineaNumeroPregunta, estiloNumPregunta["Normal"])) 
 
             #Titulo de la Pregunta - Opcional
-            lineaTituloPregunta = '<font size=11>%s</font>' % pregunta[0]
-            Prueba.append(Paragraph(lineaTituloPregunta, estiloTituloPregunta["Normal"])) 
-            Prueba.append(Spacer(1, 6))
+            if (itituloPregunta == True):
+                lineaTituloPregunta = '<font size=11>%s</font>' % pregunta[0]
+                Prueba.append(Paragraph(lineaTituloPregunta, estiloTituloPregunta["Normal"])) 
+                Prueba.append(Spacer(1, 6))
 
             #Texto de la Pregunta
             lineaPregunta = '<font size=12>%s</font>' % pregunta[1]
@@ -115,6 +120,9 @@ def convertir(listaPreguntas,destino,nombrePrueba,descripcion,tipoLetra):
                     lineaRespuesta = '<font size=11>O %s</font>' % pregunta[i]
                     Prueba.append(Paragraph(lineaRespuesta, estiloRespuesta["Normal"]))
                     Prueba.append(Spacer(1, 6))
+
+                line = '<font size=11>_______________________________________________________________________________  </font>'
+                Prueba.append(Paragraph(line, estiloRespuesta["Normal"]))
                 Prueba.append(Spacer(1, 12))
 
             numPreg = numPreg + 1         

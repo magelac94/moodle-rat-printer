@@ -122,13 +122,22 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 
 	return [gridQuiz, gridAnswers]
 
-#def abrirXML(archivo):
-# 	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
-# 	datos = manejoDatos(archivo)	# recibe la matriz de datos generada desde el archivo xml
-# 	destino = filedialog.askdirectory()	# Caperta donde se guardara los pdf generados
-# 	print (" DESTINO ", destino)
-# 	convertir(datos[0],destino,nombrePrueba,descripcion,tipoLetra )			# imprime los datos en un pdf
-# 	imprimirRespuestas(datos[1],destino)			# imprime los datos en un pdf
+def abrirXML():
+	ventana=Tk()
+	ventana.title("TBL Printer by Magela Carballo")
+	ventana.config(bg="#0B0B61")
+	ventana.geometry("400x400")
+	botonAbrir=Button(ventana,text="Select File", command=comando)
+	botonAbrir.grid(padx=100,pady=100)
+	#ventana.mainloop()
+
+def comando():
+ 	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
+ 	datos = manejoDatos(archivo)	# recibe la matriz de datos generada desde el archivo xml
+ 	destino = filedialog.askdirectory()	# Caperta donde se guardara los pdf generados
+ 	print (" DESTINO ", destino)
+ 	convertir(datos[0],destino,nombrePrueba,descripcion,tipoLetra )			# imprime los datos en un pdf
+ 	imprimirRespuestas(datos[1],destino)			# imprime los datos en un pdf
 
 def configuracionDeParametros():
 	parametros = []
@@ -154,28 +163,28 @@ def configuracionDeParametros():
 	elif (opcion == '4'):
 		tipoLetra = input("Tipo Letra: A (Arial) / Time Roman (T): ")
 	elif (opcion == '5'):
-		if (imprimirTituloPrueba == true):
-			imprimirTituloPrueba = false
+		if (imprimirTituloPrueba == True):
+			imprimirTituloPrueba = False
 		else:
-			imprimirTituloPrueba = true
+			imprimirTituloPrueba = True
 		print ("Se cambio el valor de impresion")
 	elif (opcion == '6'):
-		if (imprimirNumeroPregunta == false):
-			imprimirNumeroPregunta = true
+		if (imprimirNumeroPregunta == False):
+			imprimirNumeroPregunta = True
 		else:
-			imprimirNumeroPregunta = false
+			imprimirNumeroPregunta = False
 		print ("Se cambio el valor de impresion")
 	elif (opcion == '7'):
-		if (imprimirTituloPregunta ==  false):
-			imprimirTituloPregunta = true
+		if (imprimirTituloPregunta ==  False):
+			imprimirTituloPregunta = True
 		else:
-			imprimirTituloPregunta = false
+			imprimirTituloPregunta = False
 		print ("Se cambio el valor de impresion")
 	elif (opcion == '8'):
-		if (imprimirDescripcion ==  false):
-			imprimirDescripcion = true
+		if (imprimirDescripcion ==  False):
+			imprimirDescripcion = True
 		else:
-			imprimirDescripcion = false
+			imprimirDescripcion = False
 		print ("Se cambio el valor de impresion")
 	elif (opcion == '9'):
 		print("Nombre de Prueba: ", nombrePrueba)
@@ -200,69 +209,70 @@ def configuracionDeParametros():
 	else:
 		print("Opcion incorrecta, seleccione nuevamente")
 
+def main():
+	#Parametros
+	directorioOrigen = ''
+	directorioDestino = ''
+	nombrePrueba = ''
+	descripcion = ''
+	cantidadDeRespuestas = 10
+	tipoLetra = ''
+	inumeroPregunta = False
+	itituloPregunta = False
+	itituloPrueba = True
+	idescripcion = True
 
-#Parametros
-directorioOrigen = ''
-directorioDestino = ''
-nombrePrueba = ''
-descripcion = ''
-cantidadDeRespuestas = 10
-tipoLetra = ''
-imprimirNumeroPregunta = False
-imprimirTituloPregunta = False
-
-while (directorioOrigen == ''):
-	directorioOrigen = input("Select xml file or press P for more options(C for cancel): ")
-	if (directorioOrigen == ''):
-		print("You must enter the source directory")
-	elif(directorioOrigen == 'P'):
-		parametros = configuracionDeParametros();
-		nombrePrueba = parametros[0]
-		descripcion = parametros[1]
-		cantidadRespuestasMax = parametros[2]
-		tipoLetra = parametros[3]
-		itituloPrueba = parametros[4]
-		inumeroPregunta = parametros[5]
-		itituloPregunta = parametros[6]
-		idescripcion = parametros[7]
-		directorioOrigen = ''
-	elif (directorioOrigen == 'C'):
-		print ("Bye!")
-	elif (os.path.basename(directorioOrigen).split('.')[-1] != 'xml'):
-		print ("You must enter in a .xml file")
-	elif (directorioOrigen == 'W'):
-		abrirXML()   # abrir ventana grafica
-	else:
-		directorioDestino = ''
-		nombrePrueba = os.path.basename(directorioOrigen).split('.')[0]
-		while (directorioDestino == ''):
-			directorioDestino = input("Select destination directory (C for cancel) ")
-			if (directorioDestino == ''):
-				print("You must enter the destination directory")
-			elif(directorioDestino == 'C'):
-				print ("Bye!")
-				directorioOrigen = ''
-			else:
-				try:
+	while (directorioOrigen == ''):
+		directorioOrigen = input("Select xml file or press P for more options(C for cancel): ")
+		if (directorioOrigen == ''):
+			print("You must enter the source directory")
+		elif(directorioOrigen == 'P'):
+			parametros = configuracionDeParametros();
+			nombrePrueba = parametros[0]
+			descripcion = parametros[1]
+			cantidadRespuestasMax = parametros[2]
+			tipoLetra = parametros[3]
+			itituloPrueba = parametros[4]
+			inumeroPregunta = parametros[5]
+			itituloPregunta = parametros[6]
+			idescripcion = parametros[7]
+			directorioOrigen = ''
+		elif (directorioOrigen == 'C'):
+			print ("Bye!")
+		elif (os.path.basename(directorioOrigen).split('.')[-1] != 'xml'):
+			print ("You must enter in a .xml file")
+		elif (directorioOrigen == 'W'):
+			abrirXML()   # abrir ventana grafica
+		else:
+			directorioDestino = ''
+			nombrePrueba = os.path.basename(directorioOrigen).split('.')[0]
+			while (directorioDestino == ''):
+				directorioDestino = input("Select destination directory (C for cancel) ")
+				if (directorioDestino == ''):
+					print("You must enter the destination directory")
+				elif(directorioDestino == 'C'):
+					print ("Bye!")
+					directorioOrigen = ''
+				else:
 					datos = manejoDatos(directorioOrigen,cantidadDeRespuestas)
-					try:
-						convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,imprimirNumeroPregunta,imprimirTituloPregunta)
-						imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
-						print("PDF file created successfully in : ", directorioDestino)
-						directorioOrigen = ''
-					except:
-						print ("Error in selected directory")
-						directorioOrigen = ''
-				except:
-					print ("Error opening the source file")
-					directorioDestino = ''
+					convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
+					imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
+					print("PDF file created successfully in : ", directorioDestino)
+					directorioOrigen = ''
+
+					#try:
+					#	datos = manejoDatos(directorioOrigen,cantidadDeRespuestas)
+					#	try:
+					#		convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
+					#		imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
+					#		print("PDF file created successfully in : ", directorioDestino)
+					#		directorioOrigen = ''
+					#	except:
+					#		print ("Error in selected directory")
+					#		directorioOrigen = ''
+					#except:
+					#	print ("Error opening the source file")
+					#	directorioDestino = ''
 
 
-
-#ventana=Tk()
-#ventana.title("TBL Printer by Magela Carballo")
-#ventana.config(bg="#0B0B61")
-#ventana.geometry("600x500")
-#botonAbrir=Button(ventana,text="Select File", command=abrirXML)
-#botonAbrir.grid(padx=100,pady=100)
-#ventana.mainloop()
+main()
