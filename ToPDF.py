@@ -121,13 +121,15 @@ def convertir(listaPreguntas,destino,nombrePrueba,descripcion,tipoLetra,itituloP
                     Prueba.append(Paragraph(lineaRespuesta, estiloRespuesta["Normal"]))
                     Prueba.append(Spacer(1, 6))
 
-                line = '<font size=11>_______________________________________________________________________________  </font>'
+                line = '<font size=11>____________________________________________________________________  </font>'
                 Prueba.append(Paragraph(line, estiloRespuesta["Normal"]))
                 Prueba.append(Spacer(1, 12))
 
             numPreg = numPreg + 1         
-
+    #try:
     documento.build(Prueba)     # Generacion del documento
+    #except:
+    #    print("Error al crear el archivo, verifique no haya archivos abiertos")
 
 # Funcion que recibe lista de tuplas con el numero de pregunta y
 # La respueta correcta de esa pregunta

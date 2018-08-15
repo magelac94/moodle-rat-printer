@@ -81,7 +81,7 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			# Se obtiene la pregunta
 
 			#pregunta = strip_tags(cuestion.find("questiontext/text").text)
-			pregunta = cuestion.find("questiontext/text").text
+			pregunta = strip_tags(cuestion.find("questiontext/text").text)
 
 			# En caso de tener imagen se guarda la misma
 			#imagen = resolvertipopregunta = cuestion.get('type')
@@ -90,7 +90,7 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
 			for t in cuestion.getiterator("answer"):
 				#respuesta = strip_tags(t.find("text").text)
-				respuesta = t.find("text").text
+				respuesta = strip_tags(t.find("text").text)
 				listaAuxiliarDeRespuestas.append(respuesta)
 				respuestaCorrecta = listaAuxiliarDeRespuestas[0] # guardo la respuesta correcta ( la primera en este caso)
 				random.shuffle(listaAuxiliarDeRespuestas)		#entrevera las respuestas
@@ -137,7 +137,7 @@ def comando():
  	destino = filedialog.askdirectory()	# Caperta donde se guardara los pdf generados
  	print (" DESTINO ", destino)
  	convertir(datos[0],destino,nombrePrueba,descripcion,tipoLetra )			# imprime los datos en un pdf
- 	imprimirRespuestas(datos[1],destino)			# imprime los datos en un pdf
+ 	#imprimirRespuestas(datos[1],destino)			# imprime los datos en un pdf
 
 def configuracionDeParametros():
 	parametros = []
@@ -223,7 +223,7 @@ def main():
 	idescripcion = True
 
 	while (directorioOrigen == ''):
-		directorioOrigen = input("Select xml file or press P for more options(C for cancel): ")
+		directorioOrigen = input("\nSelect xml file or press P for more options(C for cancel): ")
 		if (directorioOrigen == ''):
 			print("You must enter the source directory")
 		elif(directorioOrigen == 'P'):
@@ -256,8 +256,8 @@ def main():
 				else:
 					datos = manejoDatos(directorioOrigen,cantidadDeRespuestas)
 					convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
-					imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
-					print("PDF file created successfully in : ", directorioDestino)
+					#imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
+					print("PDF file created successfully in : \n", directorioDestino)
 					directorioOrigen = ''
 
 					#try:
