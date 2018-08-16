@@ -18,6 +18,7 @@ import xml.etree.ElementTree as ET
 import random
 from ToPDF import *
 import os
+from htmlAPDF import *
 
 # Funcion que elimina etiquetas HTML
 def strip_tags(value):
@@ -81,7 +82,9 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			# Se obtiene la pregunta
 
 			#pregunta = strip_tags(cuestion.find("questiontext/text").text)
-			pregunta = strip_tags(cuestion.find("questiontext/text").text)
+			pregunta = cuestion.find("questiontext/text").text
+			print("PREGUNTAAAAA:")
+			print(pregunta)
 
 			# En caso de tener imagen se guarda la misma
 			#imagen = resolvertipopregunta = cuestion.get('type')
@@ -90,7 +93,7 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
 			for t in cuestion.getiterator("answer"):
 				#respuesta = strip_tags(t.find("text").text)
-				respuesta = strip_tags(t.find("text").text)
+				respuesta = t.find("text").text
 				listaAuxiliarDeRespuestas.append(respuesta)
 				respuestaCorrecta = listaAuxiliarDeRespuestas[0] # guardo la respuesta correcta ( la primera en este caso)
 				random.shuffle(listaAuxiliarDeRespuestas)		#entrevera las respuestas
@@ -254,10 +257,15 @@ def main():
 					print ("Bye!")
 					directorioOrigen = ''
 				else:
-					datos = manejoDatos(directorioOrigen,cantidadDeRespuestas)
-					convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
+					datos = manejoDatos(directorioOrigen,
+						cantidadDeRespuestas)
+					#convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
+					convertirHTMLtoPDF( datos[0], directorioDestino, 
+						nombrePrueba,descripcion,tipoLetra,itituloPrueba,
+						inumeroPregunta,itituloPregunta,idescripcion)
 					#imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
-					print("PDF file created successfully in : \n", directorioDestino)
+					print("PDF file created successfully in : \n", 
+						directorioDestino)
 					directorioOrigen = ''
 
 					#try:
