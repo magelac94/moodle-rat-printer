@@ -10,9 +10,10 @@ html = """
         </head>
         <body>
         <p>En el lenguaje Haskell, ¿a qué se le llama una <i>definición</i>?<br></p>
-        <p>A una asociación de un nombre (identificador) con un valor de un tipo particular.<br></p>
-        <p>A la asociación de un nombre (identificador) con su tipo.<br></p><p>A la declaración de una función.<br></p>
-        <p>A la firma de una función.<br></p>
+        <p>A una asociación de un nombre (identificador) con un valor de un tipo particular.</p>
+        <p>A la asociación de un nombre (identificador) con su tipo.</p>
+        <p>A la declaración de una función.</p>
+        <p>A la firma de una función.</p>
         </body>
     </html>
     """
