@@ -1,5 +1,7 @@
 # To     funcion auxiliar para TBLPrinter
 # Desarrollado por Magela Carballo - Agosto 2018
+# De texto plano a pdf
+
 
 import time
 from reportlab.lib.enums import TA_JUSTIFY, TA_CENTER, TA_RIGHT, TA_LEFT

@@ -16,7 +16,7 @@ import html
 import re
 import xml.etree.ElementTree as ET
 import random
-from ToPDF import *
+#from ToPDF import *
 import os
 from htmlAPDF import *
 
@@ -83,8 +83,6 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 
 			#pregunta = strip_tags(cuestion.find("questiontext/text").text)
 			pregunta = cuestion.find("questiontext/text").text
-			print("PREGUNTAAAAA:")
-			print(pregunta)
 
 			# En caso de tener imagen se guarda la misma
 			#imagen = resolvertipopregunta = cuestion.get('type')
@@ -122,7 +120,6 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 				print ("Respuesta :",gridQuiz[i][p])
 			i = i + 1
 			print("------------------------------------------------")
-
 	return [gridQuiz, gridAnswers]
 
 def abrirXML():
@@ -222,7 +219,7 @@ def main():
 	tipoLetra = ''
 	inumeroPregunta = False
 	itituloPregunta = False
-	itituloPrueba = True
+	itituloPrueba = False
 	idescripcion = True
 
 	while (directorioOrigen == ''):
@@ -257,15 +254,20 @@ def main():
 					print ("Bye!")
 					directorioOrigen = ''
 				else:
-					datos = manejoDatos(directorioOrigen,
-						cantidadDeRespuestas)
+					try:
+						datos = manejoDatos(directorioOrigen, cantidadDeRespuestas)
+					except:
+						print("Error en formato archivo xml")
 					#convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
-					convertirHTMLtoPDF( datos[0], directorioDestino, 
-						nombrePrueba,descripcion,tipoLetra,itituloPrueba,
-						inumeroPregunta,itituloPregunta,idescripcion)
-					#imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
-					print("PDF file created successfully in : \n", 
+					try:
+						pasarPDF( datos[0], directorioDestino,nombrePrueba,
+							descripcion,tipoLetra,itituloPrueba,inumeroPregunta,
+							itituloPregunta,idescripcion)
+						print("PDF file created successfully in : \n", 
 						directorioDestino)
+					#imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
+					except:
+						print("Error al convertir el Archivo")
 					directorioOrigen = ''
 
 					#try:

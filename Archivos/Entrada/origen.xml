@@ -1,5 +1,65 @@
-<p>En el lenguaje Haskell, ¿a qué se le llama una <i>definición</i>?<br></p><p>A una asociación de un nombre (identificador) con un valor de un tipo particular.<br></p><p>A la asociación de un nombre (identificador) con su tipo.<br></p><p>A la declaración de una función.<br></p>
-<p>A la firma de una función.<br></p>
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+        <text>$course$/Chequeo de preparación/Lenguaje funcional básico/2015. Lenguaje funcional básico</text>
+
+    </category>
+  </question>
+
+<!-- question: 17561  -->
+  <question type="multichoice">
+    <name>
+      <text>Definiciones 01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En el lenguaje Haskell, ¿a qué se le llama una <i>definición</i>?<br></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>4.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <correctfeedback format="html">
+      <text>Respuesta correcta</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Respuesta parcialmente correcta.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Respuesta incorrecta.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>A una asociación de un nombre (identificador) con un valor de un tipo particular.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la asociación de un nombre (identificador) con su tipo.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la declaración de una función.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A la firma de una función.<br></p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+  </question>
 
 <!-- question: 17560  -->
   <question type="multichoice">
