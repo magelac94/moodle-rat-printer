@@ -62,11 +62,10 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 		gridQuiz.append([])
 		for h in range(cantidadRespuestasMax):
 			gridQuiz[j].append(None)
-
 	# Se buscan las etiquetas en el arbol y se guardan los elementos en la matriz
 	i = 0
 	for cuestion in root.findall('question'):
-
+		print("hola")
 		# Guardo el tipo de pregunta
 		# Puede ser multichoice|truefalse|shortanswer|matching|cloze|essay|numerical|description
 		tipopregunta = cuestion.get('type')
