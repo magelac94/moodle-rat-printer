@@ -82,13 +82,8 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 
 			#pregunta = strip_tags(cuestion.find("questiontext/text").text)
 			pregunta = cuestion.find("questiontext/text").text
-			print("IMAGEN--------------------------")
-			imagen = cuestion.find("questiontext/file").text
-			print("IMAGEN--------------------------")
-			print(imagen)
-			# En caso de tener imagen se guarda la misma
-			#imagen = resolvertipopregunta = cuestion.get('type')
-
+	#		imagen = cuestion.find("questiontext/file").text
+			imagen = ""
 			# Respuestas de la Pregunta
 			listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
 			for t in cuestion.getiterator("answer"):
@@ -104,7 +99,8 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			gridQuiz[i][2] = tipopregunta
 			gridQuiz[i][3] = imagen
 			gridQuiz[i][4] = cantidadRespuestas
-
+			print("cantidad de respuestas")
+			print(cantidadDeRespuestas)
 			gridAnswers.append((i,respuestaCorrecta))	# se guarda numero pregunta con la respuesta correcta en una tupla
 
 			cont = 5
