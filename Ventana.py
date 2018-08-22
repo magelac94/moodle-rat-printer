@@ -82,8 +82,11 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 
 			#pregunta = strip_tags(cuestion.find("questiontext/text").text)
 			pregunta = cuestion.find("questiontext/text").text
-	#		imagen = cuestion.find("questiontext/file").text
-			imagen = ""
+			try:
+				imagen = cuestion.find("questiontext/file").text
+			except:
+				imagen = ""
+	#		imagen = ""
 			# Respuestas de la Pregunta
 			listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
 			for t in cuestion.getiterator("answer"):
@@ -99,8 +102,6 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			gridQuiz[i][2] = tipopregunta
 			gridQuiz[i][3] = imagen
 			gridQuiz[i][4] = cantidadRespuestas
-			print("cantidad de respuestas")
-			print(cantidadDeRespuestas)
 			gridAnswers.append((i,respuestaCorrecta))	# se guarda numero pregunta con la respuesta correcta en una tupla
 
 			cont = 5
@@ -252,20 +253,19 @@ def main():
 					print ("Bye!")
 					directorioOrigen = ''
 				else:
-					try:
-						datos = manejoDatos(directorioOrigen, cantidadDeRespuestas)
-					except:
-						print("Error en formato archivo xml")
+					#try:
+					datos = manejoDatos(directorioOrigen, cantidadDeRespuestas)
+					#except:
+						#print("Error en formato archivo xml")
 					#convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
 					#try:
 					pasarPDF( datos[0], directorioDestino,nombrePrueba,
 							descripcion,tipoLetra,itituloPrueba,inumeroPregunta,
 							itituloPregunta,idescripcion)
-					print("PDF file created successfully in : \n", 
-					directorioDestino)
+						#print("PDF file created successfully in : \n", directorioDestino)
 					#imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
 					#except:
-					#	print("Error al convertir el Archivo")
+					##	print("Error al convertir el Archivo")
 					directorioOrigen = ''
 
 					#try:

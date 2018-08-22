@@ -50,8 +50,10 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
         htmlcode = htmlcode + """<p style="font-size:11px">""" + descripcion + "</p>"
     # Preguntas y Respuestas
     numPreg = 1
+    print("porque no entra en este for ???????????????????????????????")
     for pregunta in listaPreguntas:
         print(pregunta[4])
+        print("nombrepregunta", pregunta[1])
         if pregunta[4] != None:
 
             # Numero Pregunta - Opcional
@@ -68,9 +70,9 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
             print(htmlcode)
 
             # Imagen de la Pregunta
- #           if pregunta[3] != "" :
- #               lineaimagen =  """<div><img src="data:image/jpg;base64,""" + src(pregunta[3]) + " /></div>"
- #               htmlcode = htmlcode + lineaimagen
+            if pregunta[3] != "" :
+                lineaimagen =  """<div><img src="data:image/jpg;base64,""" + pregunta[3] + " /></div>"
+                htmlcode = htmlcode + lineaimagen
 
             # Respuestas
             tipopregunta = pregunta[2]
@@ -122,4 +124,3 @@ def pasarPDF(datos, outputFilename,nombrePrueba,descripcion,tipoLetra,itituloPru
 #    pisa.showLogging()
 #    convertHtmlToPdf(html, outputFilename)
  #   pisa.startViewer(outputFilename)
-
