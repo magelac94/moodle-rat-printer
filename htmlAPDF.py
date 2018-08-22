@@ -50,10 +50,7 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
         htmlcode = htmlcode + """<p style="font-size:11px">""" + descripcion + "</p>"
     # Preguntas y Respuestas
     numPreg = 1
-    print("porque no entra en este for ???????????????????????????????")
     for pregunta in listaPreguntas:
-        print(pregunta[4])
-        print("nombrepregunta", pregunta[1])
         if pregunta[4] != None:
 
             # Numero Pregunta - Opcional
@@ -66,8 +63,6 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
 
             #Texto de la Pregunta 
             htmlcode = htmlcode + pregunta[1]
-            print("htmlcode 1")
-            print(htmlcode)
 
             # Imagen de la Pregunta
             if pregunta[3] != "" :
@@ -76,6 +71,8 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
 
             # Respuestas
             tipopregunta = pregunta[2]
+            print("TIPO DE PREGUNTA HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            print(tipopregunta)
             if tipopregunta == "enssay":
                 htmlcode = htmlcode + espacios10
             elif tipopregunta == "matching":
@@ -92,7 +89,6 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
             htmlcode = htmlcode + linesolid
             
             numPreg = numPreg + 1     
-    print(htmlcode)
     htmlcode = htmlcode + """   </body> </html>"""
     return htmlcode
 

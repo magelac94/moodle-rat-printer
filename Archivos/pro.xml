@@ -14,35 +14,8 @@
       <text>Definición de lenguaje - Gramática (prexamen)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Se desea especificar un lenguaje para definir listas de números de diversas maneras. Los  numerales pueden escribirse de las siguientes formas:</p>
-<ul>
-<li>Enteros:<tt>1   -123   +1400   1.400</tt></li>
-<li>Punto flotante: <tt>1,2   +1,   -,2   1.000,5</tt></li>
-<li>Enteros en hexadecimal: <tt>0xCafE   -0xC4f3   0x0</tt></li>
-<li>Notación científica: <tt>1e2   -1,1e+3   +0,5e-71</tt></li>
-<li>Complejos en notación binomial: <tt>1+i1   -1,1+i2,2   0-i2,</tt></li>
-<li>Valores especiales: <tt>Infinity   -Infinity   NaN</tt></li>
-</ul>
-<p>Las listas se denotan entre paréntesis rectos y sus elementos van separados por punto y coma. Las listas se pueden anidar, siendo elementos de otras listas. Las listas pueden estar vacías. Por ejemplo, las siguientes cadenas serían válidas en el lenguaje:</p>
-<pre>[1 ; 2 ; 3]
-[[1 ; 2] ; [1] ; []] 
-[1,0 ; [1,1 ; [1,2 ; []]]]
-[1 ; 1,0 ; 1e0 ; 1+i0]
-[NaN ; NaN ; -0.000,0+i0,0]
-[[[]]]
-</pre>
-<p>Por el contrario, las siguientes son ejemplos de cadenas que no serían válidas en el lenguaje:</p>
-<pre>1
-[[,]; [;]]
-[][]
-[[][]] 
-[0Xcafe ; xCAFE]
-[+i ; 0-I1 ; 1+i] 
-[+e ; e- ; 1E2]
-[1 2]
-</pre>
-<p>Dar una gramática para el lenguaje planteado. Se debe indicar el símbolo
- inicial, y las precedencias y asociatividades si aplican. (4p)</p>]]></text>
+      <text><![CDATA[<p>¿La siguiente gramática incontextual es ambigua? (1p)</p>
+<p style="text-align: center;">({S}, {a; b}, { S → SbS ; S → a }, S)</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>

@@ -88,26 +88,33 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 				imagen = ""
 	#		imagen = ""
 			# Respuestas de la Pregunta
-			listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
-			for t in cuestion.getiterator("answer"):
-				#respuesta = strip_tags(t.find("text").text)
-				respuesta = t.find("text").text
-				listaAuxiliarDeRespuestas.append(respuesta)
-				respuestaCorrecta = listaAuxiliarDeRespuestas[0] # guardo la respuesta correcta ( la primera en este caso)
-				random.shuffle(listaAuxiliarDeRespuestas)		#entrevera las respuestas
-			cantidadRespuestas = len(listaAuxiliarDeRespuestas)
+
+			if tipopregunta != "essay":
+				listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
+				for t in cuestion.getiterator("answer"):
+					#respuesta = strip_tags(t.find("text").text)
+					respuesta = t.find("text").text
+					listaAuxiliarDeRespuestas.append(respuesta)
+					respuestaCorrecta = listaAuxiliarDeRespuestas[0] # guardo la respuesta correcta ( la primera en este caso)
+					random.shuffle(listaAuxiliarDeRespuestas)		#entrevera las respuestas
+				cantidadRespuestas = len(listaAuxiliarDeRespuestas)
+
+				cont = 5
+				for x in listaAuxiliarDeRespuestas:
+					gridQuiz[i][cont]=x
+					cont = cont + 1
+
+			else:
+				cantidadRespuestas = 0
 
 			gridQuiz[i][0]= titulo
 			gridQuiz[i][1]= pregunta
 			gridQuiz[i][2] = tipopregunta
 			gridQuiz[i][3] = imagen
 			gridQuiz[i][4] = cantidadRespuestas
-			gridAnswers.append((i,respuestaCorrecta))	# se guarda numero pregunta con la respuesta correcta en una tupla
+			#gridAnswers.append((i,respuestaCorrecta))	# se guarda numero pregunta con la respuesta correcta en una tupla
 
-			cont = 5
-			for x in listaAuxiliarDeRespuestas:
-				gridQuiz[i][cont]=x
-				cont = cont + 1
+			
 			
 			# Imprime en pantalla todos los datos
 			print ("Titulo Pregunta: ",gridQuiz[i][0])
@@ -115,10 +122,11 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			print ("Tipo de Pregunta: ", gridQuiz[i][2])
 			print ("Cantidad de Respuestas",gridQuiz[i][4])
 			
-			for p in range (5,5+cantidadRespuestas):
-				print ("Respuesta :",gridQuiz[i][p])
-			i = i + 1
-			print("------------------------------------------------")
+			if (cantidadRespuestas != 0 ):
+				for p in range (5,5+cantidadRespuestas):
+					print ("Respuesta :",gridQuiz[i][p])
+				i = i + 1
+				print("------------------------------------------------")
 	return [gridQuiz, gridAnswers]
 
 def abrirXML():
