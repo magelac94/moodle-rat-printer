@@ -63,6 +63,8 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
 
             #Texto de la Pregunta 
             htmlcode = htmlcode + pregunta[1]
+            print("pregunta a pdf")
+            print(pregunta[1])
 
             # Imagen de la Pregunta
             if pregunta[3] != "" :
@@ -71,7 +73,6 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
 
             # Respuestas
             tipopregunta = pregunta[2]
-            print("TIPO DE PREGUNTA HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
             print(tipopregunta)
             if tipopregunta == "enssay":
                 htmlcode = htmlcode + espacios10
