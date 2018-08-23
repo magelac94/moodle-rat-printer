@@ -51,6 +51,7 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
     # Preguntas y Respuestas
     numPreg = 1
     for pregunta in listaPreguntas:
+        print(pregunta[4])
         if pregunta[4] != None:
 
             # Numero Pregunta - Opcional
