@@ -1,3 +1,12 @@
+Datos
+- Las etiquetas y formas de hacer las preguntas a veces cambian dependiendo el test, esto puede variar el resultado final en futuras pruebas
+- utilice conceptsos aprendidos en programacion web.
+- Las imagenes no las imprime dentro de la pregunta sino despues de ella.
+- Nombre de los archivos tienen que ir sin espacios
+
+
+
+
 tareas que faltan
 - entreverar las respuestas LISTO
 - entreverar las preguntas ? NO
@@ -58,7 +67,8 @@ https://pyfpdf.readthedocs.io/en/latest/
 - colocar una linea para separar las preguntas
 
 
-ver capaz sea mejor poner toda la pagina html en una var
+ver capaz sea mejor poner toda la pagina html en una var. LISTO
+- hacer un base 64 de una imagen de un checkbox y agregarlo en cada <p> de las respuestas
 
 
 

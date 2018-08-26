@@ -220,14 +220,14 @@ def main():
 	#Parametros
 	directorioOrigen = ''
 	directorioDestino = ''
-	nombrePrueba = ''
+	nombrePrueba = "Test- for PrinterTBL"
 	descripcion = ''
 	cantidadDeRespuestas = 10
 	tipoLetra = ''
 	inumeroPregunta = False
 	itituloPregunta = False
-	itituloPrueba = False
-	idescripcion = True
+	itituloPrueba = True
+	idescripcion = False
 
 	while (directorioOrigen == ''):
 		directorioOrigen = input("\nSelect xml file or press P for more options(C for cancel): ")
@@ -252,7 +252,6 @@ def main():
 			abrirXML()   # abrir ventana grafica
 		else:
 			directorioDestino = ''
-			nombrePrueba = os.path.basename(directorioOrigen).split('.')[0]
 			while (directorioDestino == ''):
 				directorioDestino = input("Select destination directory (C for cancel) ")
 				if (directorioDestino == ''):
@@ -262,6 +261,11 @@ def main():
 					directorioOrigen = ''
 				else:
 					#try:
+
+
+					nombrePrueba = input("\nInput a title for the quiz: ")
+#					os.path.basename(directorioDestino).split('.')[0]
+
 					datos = manejoDatos(directorioOrigen, cantidadDeRespuestas)
 					#except:
 						#print("Error en formato archivo xml")
