@@ -2,7 +2,8 @@ Datos
 - Las etiquetas y formas de hacer las preguntas a veces cambian dependiendo el test, esto puede variar el resultado final en futuras pruebas
 - utilice conceptsos aprendidos en programacion web.
 - Las imagenes no las imprime dentro de la pregunta sino despues de ella.
-- Nombre de los archivos tienen que ir sin espacios
+- Nombre de los archivos tienen que ir sin espacios	
+- Si se coloca el nombre del archivo final como el archivo inicio con extension xml, se sobreescribe el archivo. cuidado!!
 
 
 

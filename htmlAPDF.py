@@ -35,12 +35,8 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
     """
 
     boxp = """<img src="data:image/png;base64,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" />"""
-    #boxp = "<p>"+box
     linesolid = """<span style="font-size:15px">_______________________________________________________________________________________</span><br><br>"""
     
-    #formato = """<p style="font-family: calibri; font-size: 20px">This is some text!</p>"""  style="font-size:15px"
-    #htmlcode = htmlcode + formato
-
     # Fecha
     diaHora = time.strftime("%d/%m/%y")
     
@@ -48,16 +44,15 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
     lineaCI = """<span style="font-size:12px">Nombre y Apellido __________________________________________________       CI _____________________________        """ + diaHora + "</span>"
     
     htmlcode = htmlcode + lineaCI
-    #Dia y Hora
-    #diaHora = time.strftime("%d/%m/%y")
-    #htmlcode = htmlcode + """<p style="font-size:10px">""" + diaHora + "</p>"
+    
     #NOmbre de la Prueba - OPCIONAL por defecto es el nombre del archivo origen
     if (itituloPrueba == True):
         htmlcode = htmlcode + """<H1 align="center">""" + nombrePrueba + "</h1>"
-        #htmlcode = htmlcode + """<span style="font-size:13px">""" + nombrePrueba + "</span><br>"
+
     # Descripcion de la Prueba - OPCIONAL
     if (idescripcion == True):
         htmlcode = htmlcode + """<p style="font-size:11px">""" + descripcion + "</p>"
+    
     # Preguntas y Respuestas
     numPreg = 1
     for pregunta in listaPreguntas:
@@ -84,8 +79,8 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
 
             # Imagen de la Pregunta
             if pregunta[3] != "" :
-                #lineaimagen =  """<p><img src="data:image/jpg;base64,""" + pregunta[3] + " /></p>"
-                htmlcode = htmlcode + pregunta[3]
+                lineaimagen =  """<div align="center"><img src="data:image/png;base64,""" + pregunta[3] + """ "/></div><br>"""
+                htmlcode = htmlcode + lineaimagen
 
             # Respuestas
             tipopregunta = pregunta[2]
@@ -98,7 +93,6 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
                 htmlcode = htmlcode + line
             else:
                 p = 5+pregunta[4]
-                #htmlcode = htmlcode + """<ul type="square">"""
                 for i in range(5,p):
                     print(pregunta[i])
                     preguntaM = pregunta[i].replace("<br>", "") # elimino etiquetas br
@@ -109,7 +103,6 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
                     if preguntaM.find("<p>") == -1:
                         preguntaModificada = boxp + "<span>" + preguntaM + "</span>"
                     else:
-                   #     preguntaM = pregunta[i].replace("</p>", "") # elimino etiquetas p
                         parte1=preguntaM[:15].replace("<p>", boxp)  # agrego imagen al inicio
                         parte2=preguntaM[15:]       
                         preguntaModificada = parte1+parte2
