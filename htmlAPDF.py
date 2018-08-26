@@ -116,19 +116,13 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,tipoLetra,itituloPrueba,in
     htmlcode = htmlcode + """   </body> </html>"""
     return htmlcode
 
-# Utility function
 def convertHtmlToPdf(html, outputFilename):
-    # open output file for writing (truncated binary)
-#    textHtml = txtToHtml(datos)
     resultFile = open(outputFilename, "w+b")
 
     # convert HTML to PDF
     pisaStatus = pisa.CreatePDF(
             html,                # the HTML to convert
             dest=resultFile)           # file handle to recieve result
-
-    #pisa.CreatePDF(cont.encode, pdf_out, encoding='utf-8')
-
 
     resultFile.close()                 # close output file
     
@@ -139,8 +133,3 @@ def pasarPDF(datos, outputFilename,nombrePrueba,descripcion,tipoLetra,itituloPru
     htmlcode = txtToHtml(datos,nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
     convertHtmlToPdf(htmlcode,outputFilename)
     pisa.startViewer(outputFilename)
-# Main program
-#if __name__ == "__main__":
-#    pisa.showLogging()
-#    convertHtmlToPdf(html, outputFilename)
- #   pisa.startViewer(outputFilename)

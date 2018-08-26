@@ -6,7 +6,7 @@
 # TBLPrint recibe un archivo de test moodle exportado en formato XML 
 # y devuelve un Archivo PDF con el test para completar.
 # Tambien se imprime un PDF con las respuetas correctas a modo de 
-# facilitar la correccion de la prueba.
+# facilitar la correccion de la prueba. - no terminado 
 
 import tkinter.filedialog as fd
 from tkinter import filedialog
@@ -54,9 +54,6 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 	cantidadPreguntas = len(root)
 	print ("Cantidad de Preguntas del test ", cantidadPreguntas)
 
-	# Cantidad de Respuestas maximas por pregunta
-#	cantidadRespuestasMax = 100
-	
 	# Generacion de Matriz
 	for j in range(cantidadPreguntas):
 		gridQuiz.append([])
@@ -79,16 +76,14 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			titulo = cuestion.find("name/text").text
 
 			# Se obtiene la pregunta
-
 			#pregunta = strip_tags(cuestion.find("questiontext/text").text)
 			pregunta = cuestion.find("questiontext/text").text
 			try:
 				imagen = cuestion.find("questiontext/file").text
 			except:
 				imagen = ""
-	#		imagen = ""
+	
 			# Respuestas de la Pregunta
-
 			if tipopregunta != "essay":
 				listaAuxiliarDeRespuestas = [] 		# Lista auxiliar que guarda solo las respuestas
 				for t in cuestion.getiterator("answer"):
@@ -114,8 +109,6 @@ def manejoDatos(archivo,cantidadRespuestasMax):
 			gridQuiz[i][4] = cantidadRespuestas
 			#gridAnswers.append((i,respuestaCorrecta))	# se guarda numero pregunta con la respuesta correcta en una tupla
 
-			
-			
 			# Imprime en pantalla todos los datos
 			print ("Titulo Pregunta: ",gridQuiz[i][0])
 			print( "Texto Pregunta: ",gridQuiz[i][1])
@@ -230,7 +223,7 @@ def main():
 	idescripcion = False
 
 	while (directorioOrigen == ''):
-		directorioOrigen = input("\nSelect xml file or press P for more options(C for cancel): ")
+		directorioOrigen = input("\nSelect xml file (C for cancel): ")
 		if (directorioOrigen == ''):
 			print("You must enter the source directory")
 		elif(directorioOrigen == 'P'):
@@ -260,39 +253,12 @@ def main():
 					print ("Bye!")
 					directorioOrigen = ''
 				else:
-					#try:
-
 
 					nombrePrueba = input("\nInput a title for the quiz: ")
-#					os.path.basename(directorioDestino).split('.')[0]
-
 					datos = manejoDatos(directorioOrigen, cantidadDeRespuestas)
-					#except:
-						#print("Error en formato archivo xml")
-					#convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
-					#try:
 					pasarPDF( datos[0], directorioDestino,nombrePrueba,
 							descripcion,tipoLetra,itituloPrueba,inumeroPregunta,
 							itituloPregunta,idescripcion)
-						#print("PDF file created successfully in : \n", directorioDestino)
-					#imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
-					#except:
-					##	print("Error al convertir el Archivo")
 					directorioOrigen = ''
-
-					#try:
-					#	datos = manejoDatos(directorioOrigen,cantidadDeRespuestas)
-					#	try:
-					#		convertir( datos[0], directorioDestino, nombrePrueba,descripcion,tipoLetra,itituloPrueba,inumeroPregunta,itituloPregunta,idescripcion)
-					#		imprimirRespuestas(datos[1],directorioDestino, nombrePrueba,tipoLetra)
-					#		print("PDF file created successfully in : ", directorioDestino)
-					#		directorioOrigen = ''
-					#	except:
-					#		print ("Error in selected directory")
-					#		directorioOrigen = ''
-					#except:
-					#	print ("Error opening the source file")
-					#	directorioDestino = ''
-
 
 main()
