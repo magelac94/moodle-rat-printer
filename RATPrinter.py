@@ -128,7 +128,7 @@ def abrirXML():
 	ventana.geometry("400x400")
 	botonAbrir=Button(ventana,text="Select File", command=comando)
 	botonAbrir.grid(padx=100,pady=100)
-	#ventana.mainloop()
+	abrirXML()
 
 def comando():
  	archivo=fd.askopenfilename()	# Abre ventana para seleccionar archivo, devuelve la ruta del archivo	
@@ -141,7 +141,7 @@ def comando():
 def configuracionDeParametros():
 	opcion = "a"
 	descripcion = ""
-	cantidadRespuestasMax = ""
+	cantidadRespuestasMax = 10
 	imprimirNumeroPregunta = False
 	imprimirDescripcion = False
 	while opcion != 0:
@@ -213,6 +213,7 @@ def main():
 			print ("You must enter in a .xml file")
 		elif (directorioOrigen == 'W'):
 			abrirXML()   # abrir ventana grafica
+			directorioOrigen = ""
 		else:
 			directorioDestino = ''
 			while (directorioDestino == ''):

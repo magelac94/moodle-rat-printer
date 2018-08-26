@@ -39,7 +39,7 @@ def txtToHtml(listaPreguntas,nombrePrueba,descripcion,inumeroPregunta,idescripci
 
     # Descripcion de la Prueba - OPCIONAL
     if (idescripcion == True):
-        htmlcode = htmlcode + """<span style="font-size:11px">""" + descripcion + "</span><br>"
+        htmlcode = htmlcode + """<span style="font-size:12px">""" + descripcion + "</span><br><br>"
     
     # Preguntas y Respuestas
     numPreg = 1
